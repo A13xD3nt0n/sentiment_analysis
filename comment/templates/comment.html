@@ -1,0 +1,29 @@
+{% load static %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Комментарий</title>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="col-md-6">
+        <form method="POST" action="{% url 'comment' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <h3>Комментарий</h3>
+                <textarea class="form-control" name="text" rows="5" required></textarea>
+                <button type="submit" class="btn btn-primary">Выставить оценку</button>
+            </div>
+            </form>
+        {% if result == True %}
+          <h3>Отзыв: <b>{{ predict_sentiment }}</b></h3>
+          <h3>Сгенерированная оценка: <b>{{ predict_mark }}</b></h3>
+        {% endif %}
+    </div>
+</div>
+</body>
+
+</html>
